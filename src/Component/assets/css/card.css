@@ -1,0 +1,49 @@
+.carddiv {
+  width: 12rem;
+}
+.searchcard {
+  width: 12rem;
+  border-radius: 20px;
+}
+.cardimg {
+  width: 70%;
+  border-radius: 25px;
+  box-shadow: 1px 1px 5px white;
+  transition: 1s transform;
+}
+.cardimg:hover {
+  transform: scale(1.1);
+}
+
+.titlehead {
+  font-size: 2.5rem;
+  border-bottom: 1px solid grey;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+  .carddiv {
+    width: 11rem;
+  }
+  .titlehead {
+    font-size: 1.5rem;
+  }
+  .searchcard {
+    width: 11rem;
+  }
+}
+
+.viewmore {
+  width: 10rem;
+  height: 20rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.viewmoreitem {
+  cursor: pointer;
+  border: 1px solid black;
+  color: grey;
+  padding: 10px;
+  border-radius: 20px;
+}

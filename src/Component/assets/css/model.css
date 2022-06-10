@@ -1,0 +1,77 @@
+.close {
+  position: fixed;
+  z-index: inherit;
+  top: 4%;
+  right: 3%;
+}
+.model {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.modalswiper {
+  padding: 0px 25px;
+}
+.modalswiperslide {
+  border: 1px solid grey;
+  border-radius: 20px;
+}
+.modelimg {
+  width: 20rem;
+  height: 25rem;
+  border-radius: 20px;
+}
+
+.modelcontent {
+  width: 58%;
+}
+.modaloverview {
+  height: 25vh;
+  overflow-y: scroll;
+}
+
+.modalcastcontent {
+  background-color: white;
+  color: black;
+
+  padding: 5px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+@media (max-width: 840px) {
+  .model {
+    display: block;
+  }
+  .modelimg {
+    width: 10rem;
+    height: 15rem;
+  }
+  .modelcontent {
+    width: 100%;
+  }
+}
+
+.mode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 70vh;
+  overflow-y: scroll;
+  border: 0.5px solid white;
+  color: white;
+}
+
+/* scrollbar */
+.modaloverview::-webkit-scrollbar {
+  width: 0px;
+}
+.mode::-webkit-scrollbar {
+  width: 10px;
+}
+.mode::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}

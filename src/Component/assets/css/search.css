@@ -1,0 +1,44 @@
+.searchtank {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.searchtitle {
+  font-size: 2rem;
+}
+
+.filtertxt {
+  background-color: #13151fa9;
+  border: 1px solid green;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+  transform: scale(1);
+  transition: 1s transform;
+  cursor: pointer;
+}
+.filteractive {
+  background-color: green;
+}
+.filtertxt:hover {
+  transform: scale(1.2);
+}
+.filtertxtclosetitle {
+  border: 1px solid grey;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.norecordfound {
+  color: rgb(196, 196, 196);
+  width: 90vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 840px) {
+  .searchtitle {
+    font-size: 1.2rem;
+  }
+}
