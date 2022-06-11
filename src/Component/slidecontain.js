@@ -15,19 +15,19 @@ export default function Slide(props) {
           </div>
 
           <Swiper
-            spaceBetween={125}
-            slidesPerView={3}
+            spaceBetween={110}
+            slidesPerView={2}
             navigation
             modules={[Navigation, Keyboard, Mousewheel]}
             mousewheel={true}
             keyboard={{ enabled: true }}
             breakpoints={{
-              480: {
+              840: {
                 slidesPerView: 3,
-                spaceBetween: 175,
+                spaceBetween: 150,
               },
             }}
-            className="px-5"
+            style={{ padding: "0px 25%" }}
           >
             {props.obj.map((val, ind) => {
               return (
