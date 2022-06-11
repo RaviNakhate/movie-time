@@ -4,7 +4,7 @@
  
 ## Installation
 ```bash
-https://github.com/RaviNakhate/RaviNakhate.git
+https://github.com/RaviNakhate/movietime.git
 ```
 
 ## Install Package
