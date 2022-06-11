@@ -12,56 +12,61 @@ export default function Search(props) {
     <>
       {/* it is filter section*/}
       <div
-        className={`row mt-3 mx-3 ${
-          obj.state.filtertoggle ? "d-none" : ""
-        }  justify-content-start text-white`}
+        className="row mt-3 mx-3 
+          
+        }  justify-content-start text-white"
       >
-        <div className="searchtitle ">{props.title}</div>
-        <div className="row w-100 mb-2 justify-content-center mx-auto filtertoggle">
-          <button
-            className="btn w-100 btn-sm row text-white text-left"
-            onClick={() => {
-              obj.dispatcher({ type: "filtertoggle" });
-            }}
-          >
-            <div className="float-left ml-3">Filter </div>
-            <i className="fa fa-filter text-white float-right m-1"></i>
-          </button>
-        </div>
-
         {props.filterfun ? (
-          <div className="row filterlist h-25 mx-auto ">
-            {obj.state.filter.map((val, ind) => {
-              const booleanCheck = props.arr.includes(val.id);
-
-              return (
-                <div key={ind}>
-                  <div
-                    className={`filtertxt ${
-                      booleanCheck ? "filteractive" : ""
-                    }`}
-                    onClick={() => {
-                      props.filterfun(val.id, ind, val.lang);
-                    }}
-                  >
-                    {val.name}
-                  </div>
-                </div>
-              );
-            })}
-            <div>
-              <div
-                className=" row align-items-center p-1 ml-1 "
+          <>
+            <div className="row w-100 mb-2 justify-content-center mx-auto filtertoggle">
+              <button
+                className="btn w-100 btn-sm row text-white text-left"
                 onClick={() => {
-                  props.filterfun("clear");
+                  obj.dispatcher({ type: "filtertoggle" });
                 }}
               >
-                <div className="filtertxtclosetitle  p-2 px-3 m-1">
-                  Clear All
+                <div className="float-left ml-3">Filter </div>
+                <i className="fa fa-filter text-white float-right m-1"></i>
+              </button>
+            </div>
+
+            <div
+              className={`row filterlist ${
+                obj.state.filtertoggle ? "d-none" : ""
+              } h-25 mx-auto`}
+            >
+              {obj.state.filter.map((val, ind) => {
+                const booleanCheck = props.arr.includes(val.id);
+
+                return (
+                  <div key={ind}>
+                    <div
+                      className={`filtertxt ${
+                        booleanCheck ? "filteractive" : ""
+                      }`}
+                      onClick={() => {
+                        props.filterfun(val.id, ind, val.lang);
+                      }}
+                    >
+                      {val.name}
+                    </div>
+                  </div>
+                );
+              })}
+              <div>
+                <div
+                  className=" row align-items-center p-1 ml-1 "
+                  onClick={() => {
+                    props.filterfun("clear");
+                  }}
+                >
+                  <div className="filtertxtclosetitle  p-2 px-3 m-1">
+                    Clear All
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </>
         ) : (
           <div></div>
         )}
