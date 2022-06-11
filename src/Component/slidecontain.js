@@ -8,23 +8,23 @@ import Card from "./card";
 export default function Slide(props) {
   return (
     <>
-      <div className="container text-white my-3">
+      <div className="container text-white my-4">
         <div>
           <div className="row title justify-content-center">
             <div className="titlehead">{props.title}</div>
           </div>
 
           <Swiper
-            spaceBetween={120}
-            slidesPerView={3}
+            spaceBetween={50}
+            slidesPerView={2}
             navigation
             modules={[Navigation, Keyboard, Mousewheel]}
             mousewheel={true}
             keyboard={{ enabled: true }}
             breakpoints={{
-              840: {
-                slidesPerView: 5,
-                spaceBetween: 20,
+              480: {
+                slidesPerView: 3,
+                spaceBetween: 200,
               },
             }}
             className="pl-5 "

@@ -15,7 +15,7 @@ export default function Card(props) {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/${
           props.media_type == "tv" ? "tv" : "movie"
-        }/${props.val.id}?api_key="Enter_API_KEY"&language=en-US`
+        }/${props.val.id}?api_key="ENTER_API_KEY"&language=en-US`
       );
 
       if (props.media_type == "tv") {

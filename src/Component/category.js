@@ -24,7 +24,7 @@ export default function Category(props) {
       const data1 = await axios.get(
         `https://api.themoviedb.org/3/discover/${
           props.media_type
-        }?api_key="Enter_API_KEY"&sort_by=popularity.desc&page=${paged}&with_original_language=${lang
+        }?api_key="ENTER_API_KEY"&sort_by=popularity.desc&page=${paged}&with_original_language=${lang
           .toString()
           .replaceAll(",", "|")}&with_genres=${arr}`
       );
@@ -32,7 +32,7 @@ export default function Category(props) {
       const data2 = await axios.get(
         `https://api.themoviedb.org/3/search/${
           props.media_type
-        }?api_key="Enter_API_KEY"&language=en-US&query=${
+        }?api_key="ENTER_API_KEY"&language=en-US&query=${
           obj.state.search ? obj.state.search : "a"
         }&page=${pages}&include_adult=false`
       );
@@ -60,7 +60,7 @@ export default function Category(props) {
     setPages(p);
     const fun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${props.media_type}?api_key="Enter_API_KEY"&language=en-US&query=${obj.state.search}&page=${p}&include_adult=false`
+        `https://api.themoviedb.org/3/search/${props.media_type}?api_key=""ENTER_API_KEY"&language=en-US&query=${obj.state.search}&page=${p}&include_adult=false`
       );
       setSearch(data.results);
     };

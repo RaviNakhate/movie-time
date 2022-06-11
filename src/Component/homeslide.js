@@ -25,14 +25,14 @@ export default function Home() {
   useEffect(() => {
     const moviefun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/week?api_key="Enter_API_KEY"`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key="ENTER_API_KEY"`
       );
       setMovie(data.results);
     };
 
     const tvfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/tv/week?api_key="Enter_API_KEY"`
+        `https://api.themoviedb.org/3/trending/tv/week?api_key="ENTER_API_KEY"`
       );
 
       setTv(data.results);
@@ -44,7 +44,7 @@ export default function Home() {
   useEffect(() => {
     const upcomingmoviefun = async () => {
       const { data } = await axios.get(
-        ` https://api.themoviedb.org/3/movie/upcoming?api_key="Enter_API_KEY"&page=${l1}`
+        ` https://api.themoviedb.org/3/movie/upcoming?api_key="ENTER_API_KEY"&page=${l1}`
       );
       setUpcomingmovie([...upcomingmovie, ...data.results]);
     };
@@ -53,7 +53,7 @@ export default function Home() {
   useEffect(() => {
     const upcomingtvfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/tv/on_the_air?api_key="Enter_API_KEY"&language=en-US&page=${l2}`
+        `https://api.themoviedb.org/3/tv/on_the_air?api_key="ENTER_API_KEY"&language=en-US&page=${l2}`
       );
       setUpcomingtv([...upcomingtv, ...data.results]);
     };
@@ -62,7 +62,7 @@ export default function Home() {
   useEffect(() => {
     const popmoviefun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key="Enter_API_KEY"&page=${l3}&region=IN`
+        `https://api.themoviedb.org/3/movie/popular?api_key="ENTER_API_KEY"&page=${l3}&region=IN`
       );
       setPopmovie([...popmovie, ...data.results]);
     };
@@ -71,7 +71,7 @@ export default function Home() {
   useEffect(() => {
     const poptvfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/tv/popular?api_key="Enter_API_KEY"&page=${l4}&region=IN`
+        `https://api.themoviedb.org/3/tv/popular?api_key="ENTER_API_KEY"&page=${l4}&region=IN`
       );
       setPoptv([...poptv, ...data.results]);
     };
@@ -80,7 +80,7 @@ export default function Home() {
   useEffect(() => {
     const topmoviefun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key="Enter_API_KEY"&language=en-US&page=${l5}&region=IN`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key="ENTER_API_KEY"&language=en-US&page=${l5}&region=IN`
       );
       setTopmovie([...topmovie, ...data.results]);
     };
@@ -90,7 +90,7 @@ export default function Home() {
   useEffect(() => {
     const toptvfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/tv/top_rated?api_key="Enter_API_KEY"&language=en-US&page=${l6}&region=IN`
+        `https://api.themoviedb.org/3/tv/top_rated?api_key="ENTER_API_KEY"&language=en-US&page=${l6}&region=IN`
       );
       setToptv([...toptv, ...data.results]);
     };

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
 import axios from "axios";
 import "./assets/css/banner.css";
 import { Carousel } from "react-bootstrap";
@@ -10,7 +12,7 @@ export default function Banner() {
   useEffect(() => {
     const bannerfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/all/week?api_key="Enter_API_KEY"`
+        `https://api.themoviedb.org/3/trending/all/week?api_key="ENTER_API_KEY"`
       );
       setBanner(data.results);
     };
@@ -18,36 +20,21 @@ export default function Banner() {
   }, []);
 
   return (
-    <div className="banner mt-2 text-white d-flex align-items-center justify-content-center ">
-      <Carousel
-        interval={2000}
-        fade={true}
-        pause={false}
-        indicators={false}
-        prevLabel={""}
-        nextLabel={""}
-        nextIcon={[
-          <div className="px-3 py-2 bg-dark rounded-circle" key={1}>
-            <span
-              aria-hidden="true"
-              className="mt-2 carousel-control-next-icon"
-            />
-          </div>,
-        ]}
-        prevIcon={[
-          <div className="px-3 py-2  bg-dark rounded-circle" key={2}>
-            <span
-              aria-hidden="true"
-              className="mt-2 carousel-control-prev-icon"
-            />
-          </div>,
-        ]}
+    <div className="banner  mt-2  text-white">
+      <Swiper
+        slidesPerView={1}
+        modules={[Autoplay]}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        loop
       >
         {banner.map((val, ind) => {
           return (
-            <Carousel.Item key={ind} className=" ">
+            <SwiperSlide key={ind}>
               <div
-                className="bannerbody px-2  "
+                className="bannerbody "
                 style={{
                   backgroundImage: `linear-gradient(transparent,#13151f),url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${
                     val.backdrop_path
@@ -105,10 +92,10 @@ export default function Banner() {
                   </div>
                 </div>
               </div>
-            </Carousel.Item>
+            </SwiperSlide>
           );
         })}
-      </Carousel>
+      </Swiper>
     </div>
   );
 }

@@ -34,6 +34,7 @@
   .bannerbody {
     height: 60vh;
     width: 70vw;
+    margin: 0px auto;
     display: grid;
   }
   .bannerimg {

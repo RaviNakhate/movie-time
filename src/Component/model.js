@@ -40,7 +40,7 @@ export default function Model() {
   useEffect(() => {
     const getcast = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/${obj.state.modal.media_type}/${obj.state.modal.id}/credits?api_key="Enter_API_KEY"&language=en-US`
+        `https://api.themoviedb.org/3/${obj.state.modal.media_type}/${obj.state.modal.id}/credits?api_key="ENTER_API_KEY"&language=en-US`
       );
 
       setCast(data.cast);
@@ -53,7 +53,7 @@ export default function Model() {
             obj.state.modal.details.number_of_seasons
               ? obj.state.modal.details.number_of_seasons
               : 1
-          }/videos?api_key="Enter_API_KEY"&language=en-US`
+          }/videos?api_key="ENTER_API_KEY"&language=en-US`
         );
 
         if (data.results.length) {
@@ -63,7 +63,7 @@ export default function Model() {
         }
       } else {
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/${obj.state.modal.id}/videos?api_key="Enter_API_KEY"&language=en-US`
+          `https://api.themoviedb.org/3/movie/${obj.state.modal.id}/videos?api_key="ENTER_API_KEY"&language=en-US`
         );
 
         if (data.results.length) {
@@ -98,8 +98,8 @@ export default function Model() {
             <>
               <div className="model ">
                 <div className="container ">
-                  <div className="row justify-content-center align-items-center position-relative">
-                    <span className="position-relative">
+                  <div className="row w-75 justify-content-center align-items-center position-relative">
+                    <div className="position-relative ">
                       <img
                         src={
                           obj.state.modal.details.poster_path
@@ -120,22 +120,22 @@ export default function Model() {
                       >
                         <i className="fa fa-photo text-white "></i>
                       </a>
-                    </span>
-                  </div>
-                  <div className="row justify-content-center  my-2">
-                    {video ? (
-                      <a
-                        href={`https://www.youtube.com/watch?v=${video}`}
-                        target="_blank"
-                      >
-                        <button className="btn btn-danger btn-sm py-0">
-                          <small> WATCH TRAILER </small>
-                          <i className="fa fa-youtube-play text-white ml-2  "></i>
-                        </button>
-                      </a>
-                    ) : (
-                      ""
-                    )}
+                      <div className="row  justify-content-center  my-2">
+                        {video ? (
+                          <a
+                            href={`https://www.youtube.com/watch?v=${video}`}
+                            target="_blank"
+                          >
+                            <button className="btn btn-danger btn-sm py-0">
+                              <small> WATCH TRAILER </small>
+                              <i className="fa fa-youtube-play text-white ml-2  "></i>
+                            </button>
+                          </a>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -192,9 +192,32 @@ export default function Model() {
                       )}
                     </div>
                     <div>
-                      <button className="btn btn-primary btn-primary btn-sm mt-2">
-                        Download
-                      </button>
+                      <a
+                        href={`${
+                          obj.state.modal.details.id
+                            ? obj.state.modal.details.production_countries
+                                .length
+                              ? obj.state.modal.details.production_countries[0]
+                                  .name == "India"
+                                ? `https://bollyverse.xyz/?s= ${
+                                    obj.state.modal.details.title
+                                      ? obj.state.modal.details.title
+                                      : obj.state.modal.details.name
+                                  }`
+                                : `https://themoviesverse.co/?s= ${
+                                    obj.state.modal.details.title
+                                      ? obj.state.modal.details.title
+                                      : obj.state.modal.details.name
+                                  }`
+                              : ""
+                            : ""
+                        }`}
+                        target="_blank"
+                      >
+                        <button className="btn btn-primary btn-primary btn-sm mt-2">
+                          Download
+                        </button>
+                      </a>
                     </div>
                   </div>
 
