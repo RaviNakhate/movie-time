@@ -31,10 +31,6 @@ npm install @mui/material @emotion/react @emotion/styled
 
 ```
 
-```bash
-npm i react-bootstrap
-```
-
 ## Components Tree-Structer
 ```bash
 ├── MovieTime
