@@ -18,7 +18,7 @@ export default function Banner() {
   }, []);
 
   return (
-    <div className="banner text-white d-flex justify-content-center ">
+    <div className="banner mt-2 text-white d-flex align-items-center justify-content-center ">
       <Carousel
         interval={2000}
         fade={true}
