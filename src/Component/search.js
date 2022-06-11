@@ -11,7 +11,11 @@ export default function Search(props) {
   return (
     <>
       {/* it is filter section*/}
-      <div className="row mt-3 mx-3  justify-content-start text-white">
+      <div
+        className={`row mt-3 mx-3 ${
+          obj.state.filtertoggle ? "d-none" : ""
+        }  justify-content-start text-white`}
+      >
         <div className="searchtitle ">{props.title}</div>
         <div className="row w-100 mb-2 justify-content-center mx-auto filtertoggle">
           <button
@@ -26,11 +30,7 @@ export default function Search(props) {
         </div>
 
         {props.filterfun ? (
-          <div
-            className={`row filterlist ${
-              obj.state.filtertoggle ? "d-none" : ""
-            } h-25 mx-auto `}
-          >
+          <div className="row filterlist h-25 mx-auto ">
             {obj.state.filter.map((val, ind) => {
               const booleanCheck = props.arr.includes(val.id);
 

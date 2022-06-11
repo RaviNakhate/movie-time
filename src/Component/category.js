@@ -60,7 +60,7 @@ export default function Category(props) {
     setPages(p);
     const fun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${props.media_type}?api_key=""ENTER_API_KEY"&language=en-US&query=${obj.state.search}&page=${p}&include_adult=false`
+        `https://api.themoviedb.org/3/search/${props.media_type}?api_key="ENTER_API_KEY"&language=en-US&query=${obj.state.search}&page=${p}&include_adult=false`
       );
       setSearch(data.results);
     };

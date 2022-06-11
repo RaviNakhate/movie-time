@@ -98,7 +98,7 @@ export default function Model() {
             <>
               <div className="model ">
                 <div className="container ">
-                  <div className="row w-75 justify-content-center align-items-center position-relative">
+                  <div className="row  justify-content-center align-items-center position-relative">
                     <div className="position-relative ">
                       <img
                         src={
@@ -192,32 +192,9 @@ export default function Model() {
                       )}
                     </div>
                     <div>
-                      <a
-                        href={`${
-                          obj.state.modal.details.id
-                            ? obj.state.modal.details.production_countries
-                                .length
-                              ? obj.state.modal.details.production_countries[0]
-                                  .name == "India"
-                                ? `https://bollyverse.xyz/?s= ${
-                                    obj.state.modal.details.title
-                                      ? obj.state.modal.details.title
-                                      : obj.state.modal.details.name
-                                  }`
-                                : `https://themoviesverse.co/?s= ${
-                                    obj.state.modal.details.title
-                                      ? obj.state.modal.details.title
-                                      : obj.state.modal.details.name
-                                  }`
-                              : ""
-                            : ""
-                        }`}
-                        target="_blank"
-                      >
-                        <button className="btn btn-primary btn-primary btn-sm mt-2">
-                          Download
-                        </button>
-                      </a>
+                      <button className="btn btn-primary btn-primary btn-sm mt-2">
+                        Download
+                      </button>
                     </div>
                   </div>
 
