@@ -29,7 +29,7 @@
     font-size: 1.5rem;
   }
   .searchcard {
-    width: 11rem;
+    width: 7rem;
   }
 }
 
@@ -46,4 +46,7 @@
   color: grey;
   padding: 10px;
   border-radius: 20px;
+}
+.fontsize {
+  font-size: 0.8rem;
 }

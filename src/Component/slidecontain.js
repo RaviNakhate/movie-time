@@ -15,8 +15,8 @@ export default function Slide(props) {
           </div>
 
           <Swiper
-            spaceBetween={50}
-            slidesPerView={2}
+            spaceBetween={120}
+            slidesPerView={3}
             navigation
             modules={[Navigation, Keyboard, Mousewheel]}
             mousewheel={true}

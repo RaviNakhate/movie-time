@@ -13,7 +13,7 @@ export default function Homesearch() {
   useEffect(() => {
     const searchfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?api_key="Enter_here_API_key"&query=${obj.state.search}&page=${page}`
+        `https://api.themoviedb.org/3/search/multi?api_key="Enter_API_KEY"&query=${obj.state.search}&page=${page}`
       );
       setSearch(data.results);
       setTotalpage(data.total_pages);
@@ -27,7 +27,7 @@ export default function Homesearch() {
     setPage(p);
     const fun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/tv?api_key="Enter_here_API_key"&language=en-US&query=${
+        `https://api.themoviedb.org/3/search/tv?api_key="Enter_API_KEY"&language=en-US&query=${
           obj.state.search ? obj.state.search : "a"
         }&page=${p}&include_adult=false`
       );

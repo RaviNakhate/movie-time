@@ -15,7 +15,7 @@ export default function Card(props) {
       const { data } = await axios.get(
         `https://api.themoviedb.org/3/${
           props.media_type == "tv" ? "tv" : "movie"
-        }/${props.val.id}?api_key="Enter_here_API_key"&language=en-US`
+        }/${props.val.id}?api_key="Enter_API_KEY"&language=en-US`
       );
 
       if (props.media_type == "tv") {
@@ -52,11 +52,11 @@ export default function Card(props) {
   }, [details]);
 
   return props.getDetailsForBanner ? (
-    <div>{date}</div>
+    <small>{date}</small>
   ) : (
     <>
       <div
-        className="searchcard mx-2 my-2 text-white "
+        className="searchcard mx-1 my-1 text-white "
         style={{
           backgroundImage: `linear-gradient(#13151f,transparent,#13151f),url(${
             props.val.backdrop_path
@@ -91,9 +91,11 @@ export default function Card(props) {
             className="card-top-img cardimg mx-auto mt-2"
           />
           <div className="card-body">
-            <div className="card-title text-center">
+            <div className="card-title text-center fontsize">
               {props.val.title ? props.val.title : props.val.name}
-              {date}
+              <div>
+                <small> {date}</small>
+              </div>
             </div>
 
             <div className="card-content text-center">

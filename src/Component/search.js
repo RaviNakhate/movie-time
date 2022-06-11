@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "./card";
 import "./assets/css/search.css";
 import { Global } from "../ContexReducer/contex";
@@ -11,10 +11,26 @@ export default function Search(props) {
   return (
     <>
       {/* it is filter section*/}
-      <div className="row mt-3 mx-5  justify-content-start text-white">
+      <div className="row mt-3 mx-3  justify-content-start text-white">
         <div className="searchtitle ">{props.title}</div>
+        <div className="row w-100 mb-2 justify-content-center mx-auto filtertoggle">
+          <button
+            className="btn w-100 btn-sm row text-white text-left"
+            onClick={() => {
+              obj.dispatcher({ type: "filtertoggle" });
+            }}
+          >
+            <div className="float-left ml-3">Filter </div>
+            <i className="fa fa-filter text-white float-right m-1"></i>
+          </button>
+        </div>
+
         {props.filterfun ? (
-          <div className="row h-25 ml-4 ">
+          <div
+            className={`row filterlist ${
+              obj.state.filtertoggle ? "d-none" : ""
+            } h-25 mx-auto `}
+          >
             {obj.state.filter.map((val, ind) => {
               const booleanCheck = props.arr.includes(val.id);
 

@@ -10,7 +10,7 @@ export default function Banner() {
   useEffect(() => {
     const bannerfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/all/week?api_key="Enter_here_API_key"`
+        `https://api.themoviedb.org/3/trending/all/week?api_key="Enter_API_KEY"`
       );
       setBanner(data.results);
     };
@@ -18,7 +18,7 @@ export default function Banner() {
   }, []);
 
   return (
-    <div className="banner text-white h-75  d-flex justify-content-center align-items-center">
+    <div className="banner text-white d-flex justify-content-center ">
       <Carousel
         interval={2000}
         fade={true}
@@ -45,9 +45,9 @@ export default function Banner() {
       >
         {banner.map((val, ind) => {
           return (
-            <Carousel.Item key={ind} className=" px-4">
+            <Carousel.Item key={ind} className=" ">
               <div
-                className="bannerbody"
+                className="bannerbody px-2  "
                 style={{
                   backgroundImage: `linear-gradient(transparent,#13151f),url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${
                     val.backdrop_path
@@ -57,9 +57,9 @@ export default function Banner() {
                   backgroundSize: "cover",
                 }}
               >
-                <div className="bannerimgdiv ">
+                <div className="bannerimgdiv  p-1">
                   <img
-                    className="bannerimg mt-2"
+                    className="bannerimg  "
                     src={` ${
                       val.poster_path
                         ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${val.poster_path}`
@@ -68,11 +68,12 @@ export default function Banner() {
                     alt="poster_image"
                   />
                 </div>
-                <div className="bannercontent w-100">
-                  <div className=" row mt-3 bannertitle justify-content-center  font-weight-bold">
+                <div className="bannercontent  mt-0">
+                  <div className="  bannertitle justify-content-center  font-weight-bold">
                     {val.title ? val.title : val.name}
+
                     {val.media_type ? (
-                      <div className="ml-2">
+                      <div className="mx-auto">
                         {val.media_type === "tv"
                           ? "( Web Series )"
                           : " ( Movie )"}
@@ -81,22 +82,22 @@ export default function Banner() {
                       <div></div>
                     )}
                   </div>
+
                   <Card
                     media_type={val.media_type}
                     val={val}
                     getDetailsForBanner={true}
                   />
-                  <div className="row w-100 mx-auto h5 justify-content-center">
-                    <small>
-                      {!(val.vote_average == 0) ? (
-                        <div>
-                          <i className="fa fa-star mr-1 text-warning"></i>
-                          {val.vote_average} / 10
-                        </div>
-                      ) : (
-                        <div></div>
-                      )}
-                    </small>
+
+                  <div className="row w-100 mx-auto  justify-content-center">
+                    {!(val.vote_average == 0) ? (
+                      <div>
+                        <i className="fa fa-star mr-1 text-warning"></i>
+                        {val.vote_average} / 10
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
                   </div>
 
                   <div className="row banneroverview w-100 mx-auto  justify-content-center">

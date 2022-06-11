@@ -5,7 +5,7 @@ import "swiper/css";
 import { Keyboard, Mousewheel, Autoplay } from "swiper";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
-import { Modal, Avatar } from "@mui/material";
+import { Modal } from "@mui/material";
 import Fade from "@mui/material/Fade";
 import { useContext } from "react";
 import { Global } from "../ContexReducer/contex";
@@ -40,7 +40,7 @@ export default function Model() {
   useEffect(() => {
     const getcast = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/${obj.state.modal.media_type}/${obj.state.modal.id}/credits?api_key="Enter_here_API_key"&language=en-US`
+        `https://api.themoviedb.org/3/${obj.state.modal.media_type}/${obj.state.modal.id}/credits?api_key="Enter_API_KEY"&language=en-US`
       );
 
       setCast(data.cast);
@@ -53,7 +53,7 @@ export default function Model() {
             obj.state.modal.details.number_of_seasons
               ? obj.state.modal.details.number_of_seasons
               : 1
-          }/videos?api_key="Enter_here_API_key"&language=en-US`
+          }/videos?api_key="Enter_API_KEY"&language=en-US`
         );
 
         if (data.results.length) {
@@ -63,20 +63,20 @@ export default function Model() {
         }
       } else {
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/${obj.state.modal.id}/videos?api_key="Enter_here_API_key"&language=en-US`
+          `https://api.themoviedb.org/3/movie/${obj.state.modal.id}/videos?api_key="Enter_API_KEY"&language=en-US`
         );
 
         if (data.results.length) {
           setVideo(data.results[0].key);
         } else {
-          setVideo(0);
+          setVideo(1);
         }
       }
     };
 
     getvideo();
     getcast();
-  }, [obj.state.modal.id, obj.state.modal]);
+  }, [obj.state.modal.id, obj.state.modal.details]);
 
   return (
     <div>
@@ -97,9 +97,9 @@ export default function Model() {
           <Box sx={style} className="mode ">
             <>
               <div className="model ">
-                <div className="row justify-content-center align-items-center ">
-                  <div>
-                    <div>
+                <div className="container ">
+                  <div className="row justify-content-center align-items-center position-relative">
+                    <span className="position-relative">
                       <img
                         src={
                           obj.state.modal.details.poster_path
@@ -109,55 +109,95 @@ export default function Model() {
                         alt="not found"
                         className="modelimg  "
                       />
-                    </div>
-                    <div className="row justify-content-center  my-3">
-                      {video ? (
-                        <a
-                          href={`https://www.youtube.com/watch?v=${video}`}
-                          target="_blank"
-                        >
-                          <button className="btn btn-danger btn-sm">
-                            WATCH THE TRAILER
-                            <i className="fa fa-youtube-play text-white ml-2  "></i>
-                          </button>
-                        </a>
-                      ) : (
-                        ""
-                      )}
-                    </div>
+                      <a
+                        target="_blank"
+                        href={` https://www.google.com/search?q=${
+                          obj.state.modal.details.title
+                            ? obj.state.modal.details.title
+                            : obj.state.modal.details.name
+                        }&tbm=isch`}
+                        className="photo "
+                      >
+                        <i className="fa fa-photo text-white "></i>
+                      </a>
+                    </span>
+                  </div>
+                  <div className="row justify-content-center  my-2">
+                    {video ? (
+                      <a
+                        href={`https://www.youtube.com/watch?v=${video}`}
+                        target="_blank"
+                      >
+                        <button className="btn btn-danger btn-sm py-0">
+                          <small> WATCH TRAILER </small>
+                          <i className="fa fa-youtube-play text-white ml-2  "></i>
+                        </button>
+                      </a>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
 
-                <div className="modelcontent text-center  mx-auto my-5 ">
-                  <div className="h3 font-weight-bold">
-                    {obj.state.modal.details.title
-                      ? obj.state.modal.details.title
-                      : obj.state.modal.details.name}
+                <div className="modelcontent text-center  mx-auto  ">
+                  <div className="modeltitlecontent">
+                    <div className="font-weight-bold">
+                      {obj.state.modal.details.title
+                        ? obj.state.modal.details.title
+                        : obj.state.modal.details.name}
 
-                    {` (${
-                      obj.state.modal.media_type == "movie"
-                        ? "Movie"
-                        : "Web Series"
-                    })`}
+                      {` (${
+                        obj.state.modal.media_type == "movie"
+                          ? "Movie"
+                          : "Web Series"
+                      })`}
+
+                      <a
+                        target="_blank"
+                        href={`https://en.wikipedia.org/wiki/${
+                          obj.state.modal.details.title
+                            ? obj.state.modal.details.title
+                            : obj.state.modal.details.name
+                        }`}
+                      >
+                        <i className="fa fa-wikipedia-w mx-2"></i>
+                      </a>
+                      <a
+                        target="_blank"
+                        href={` https://www.google.com/search?q=${
+                          obj.state.modal.details.title
+                            ? obj.state.modal.details.title
+                            : obj.state.modal.details.name
+                        }`}
+                      >
+                        <i className="fa fa-google mx-2"></i>
+                      </a>
+                    </div>
+                    <div>{obj.state.modal.date}</div>
+                    <div>
+                      {obj.state.modal.details.genres
+                        ? obj.state.modal.details.genres.map((val, ind) => {
+                            return <span key={ind}>{val.name}, </span>;
+                          })
+                        : ""}
+                    </div>
+                    <div>
+                      {!(obj.state.modal.details.vote_average == 0) ? (
+                        <div>
+                          <i className="fa fa-star mr-1 text-warning"></i>
+                          {obj.state.modal.details.vote_average} / 10
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </div>
+                    <div>
+                      <button className="btn btn-primary btn-primary btn-sm mt-2">
+                        Download
+                      </button>
+                    </div>
                   </div>
-                  <div>{obj.state.modal.date}</div>
-                  <div>
-                    {obj.state.modal.details.genres
-                      ? obj.state.modal.details.genres.map((val, ind) => {
-                          return <span key={ind}>{val.name}, </span>;
-                        })
-                      : ""}
-                  </div>
-                  <div>
-                    {!(obj.state.modal.details.vote_average == 0) ? (
-                      <div>
-                        <i className="fa fa-star mr-1 text-warning"></i>
-                        {obj.state.modal.details.vote_average} / 10
-                      </div>
-                    ) : (
-                      <div></div>
-                    )}
-                  </div>
+
                   <div className="rounded border border-dark modaloverview mt-3 p-1">
                     <small>
                       {obj.state.modal.details.overview
@@ -168,7 +208,7 @@ export default function Model() {
                   <div>
                     <div className="my-2 text-left">Cast : </div>
                     <Swiper
-                      spaceBetween={10}
+                      spaceBetween={5}
                       slidesPerView={2}
                       breakpoints={{
                         840: {
@@ -183,7 +223,7 @@ export default function Model() {
                       }}
                       mousewheel={true}
                       keyboard={{ enabled: true }}
-                      className="modalswiper py-3 border border-dark rounded"
+                      className="modalswiper  p-1 border-dark rounded"
                     >
                       {cast.length ? (
                         cast.map((val, ind) => {
@@ -191,43 +231,36 @@ export default function Model() {
                             <div key={ind}>
                               <SwiperSlide
                                 key={ind}
-                                className="modalswiperslide bg-dark my-auto"
-                                style={{
-                                  backgroundImage: `linear-gradient(#13151f,transparent,#13151f),url(${
-                                    val.profile_path
-                                      ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${val.profile_path}`
-                                      : ``
-                                  })`,
-                                  backgroundSize: "cover",
-                                }}
+                                className="modalswiperslide bg-dark"
                               >
-                                <Avatar
-                                  sx={{ width: 56, height: 56 }}
-                                  className="mx-auto my-4"
-                                  style={{ border: "3px solid white" }}
-                                  alt={val.name.slice(0)}
+                                <img
+                                  className="avatar m-1  border border-white"
                                   src={`${
                                     val.profile_path
                                       ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${val.profile_path}`
                                       : ``
                                   }`}
+                                  alt="no image found"
                                 />
-                                <div className="modalcastcontent">
+
+                                <div className="modalcastcontent mx-3  text-center">
                                   <small>
                                     <span>
-                                      <strong> {val.name} </strong>
-                                      <a
-                                        target="_blank"
-                                        href={`https://en.wikipedia.org/wiki/${val.name.replace(
-                                          " ",
-                                          "_"
-                                        )}`}
-                                      >
-                                        {" "}
-                                        <i className="fa fa-wikipedia-w "></i>
-                                      </a>
+                                      <strong className="p-1 row justify-content-around">
+                                        {val.name}
+                                        <a
+                                          target="_blank"
+                                          href={`https://en.wikipedia.org/wiki/${val.name.replace(
+                                            " ",
+                                            "_"
+                                          )}`}
+                                        >
+                                          {" "}
+                                          <i className="fa fa-wikipedia-w "></i>
+                                        </a>
+                                      </strong>
                                     </span>
-                                    <div className="my-2">{` (${val.character})`}</div>
+                                    <div className="my-2 ">{` (${val.character})`}</div>
                                   </small>
                                 </div>
                               </SwiperSlide>

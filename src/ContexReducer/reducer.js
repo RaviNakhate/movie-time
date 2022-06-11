@@ -9,6 +9,9 @@ export const reducer = (state, action) => {
     case "filter":
       state.filter[action.payload].value = !state.filter[action.payload].value;
       return { ...state };
+    case "filtertoggle":
+      state.filtertoggle = !state.filtertoggle;
+      return { ...state };
     case "all":
       state.all = action.payload;
       return { ...state };

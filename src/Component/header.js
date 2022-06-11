@@ -126,10 +126,10 @@ export default function Header() {
               </NavLink>
             </div>
 
-            <form className="my-3">
+            <div className="my-3" id="form">
               <div className="search">
                 <div className="searchselect mx-3">
-                  {type ? type : "search"}
+                  {type.replace("/", " ")}
                 </div>
                 <input
                   type="text"
@@ -140,9 +140,18 @@ export default function Header() {
                   className="searchtxt ml-2"
                   placeholder="search here..."
                 />
-                <i className="fa fa-search searchicon  my-3 mx-3"></i>
+                {obj.state.search ? (
+                  <i
+                    className="fa fa-close searchicon  my-3 mx-3"
+                    onClick={() => {
+                      obj.dispatcher({ type: "search", payload: "" });
+                    }}
+                  ></i>
+                ) : (
+                  <i className="fa fa-search searchicon  my-3 mx-3"></i>
+                )}
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
