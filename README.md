@@ -1,6 +1,8 @@
 ## Movietime
  - It is an online database of information related to Movies,Web series.
  - Live site (https://ravinakhate.github.io/movietime/).
+ - Localhost homepage "http://localhost:3000/movietime".
+
  
 ## Installation
 ```bash
