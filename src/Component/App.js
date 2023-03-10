@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename="/movietime/">
+      <BrowserRouter >
         <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
