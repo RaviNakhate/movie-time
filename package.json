@@ -1,5 +1,6 @@
 {
   "name": "Movie Time",
+  "homepage": "https://ravinakhate.github.io/movietime",
   "description": "It is an online database of information related to Movies,Web series.",
   "version": "0.1.0",
   "private": true,
