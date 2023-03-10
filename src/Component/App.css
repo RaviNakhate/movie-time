@@ -11,20 +11,3 @@ body {
 .pagination {
   background-color: rgba(95, 95, 95);
 }
-.back {
-  height: 80vh;
-  background-image: linear-gradient(to bottom, #13151f, #13151f79, #13151f),
-    url("./assets/background2.jpg");
-  background-size: cover;
-}
-.fix {
-  position: fixed;
-  z-index: 5;
-  bottom: 3%;
-  right: 3%;
-  color: white;
-  font-size: 2rem;
-  background-color: grey;
-  padding: 5px 15px;
-  border-radius: 50px;
-}

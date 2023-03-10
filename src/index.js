@@ -2,16 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./Component/App";
-import Contex from "./ContexReducer/contex";
 import Model from "./Component/model";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export default root.render(
   <>
-    <Contex>
+    <Provider store={store}>
       <App />
       <Model />
-    </Contex>
+    </Provider>
   </>
 );
 

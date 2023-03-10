@@ -1,20 +1,73 @@
-.footer {
-  background-image: linear-gradient(transparent, #13151f), url("../footer.png");
-  background-size: cover;
-  height: 30vh;
+.footerDistributed {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding: 35px 45px;
+  margin-top: auto;
 }
-.footerlogoimg {
-  width: 2rem;
-  margin-right: 5px;
+/* Footer Left */
+.footerLinks,
+.footerCompany {
+  color: #8f9296;
+  font-size: 14px;
+  margin: 0;
 }
-.develop {
-  font-size: 1.2rem;
-  font-weight: lighter;
+.footerLinks {
+  font-size: 18px;
+  font-weight: bold;
+  color: #8f9296;
+  margin: 0 0 10px;
+  padding: 0;
+  transition: ease 0.25s;
 }
 
-@media (max-width: 840px) {
-  .footer {
-    height: 15vh;
-    margin-bottom: 50px;
+.footerLinks a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+  transition: ease 0.25s;
+}
+
+/* Footer Right */
+.footerRight {
+  float: right;
+  margin-top: 6px;
+  max-width: 300px;
+}
+
+.footerRight a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-left: 3px;
+  transition: all 0.25s;
+}
+
+.footerRight a:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+  .footerLeft,
+  .footerRight {
+    text-align: center;
+  }
+  .footerRight {
+    float: none;
+    margin: 0 auto 20px;
+  }
+  p.footerLinks {
+    line-height: 1.8;
   }
 }

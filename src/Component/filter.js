@@ -1,16 +1,14 @@
 import React from "react";
-import Card from "./card";
+import { useSelector, useDispatch } from "react-redux";
 import "./assets/css/search.css";
-import { Global } from "../ContexReducer/contex";
-import { useContext } from "react";
-import Paginations from "./paginations";
 
-export default function Search(props) {
-  const obj = useContext(Global);
-
+export default function Filter(props) {
+  const dispatcher = useDispatch();
+  const {
+    filterState: { filtertoggle, filter },
+  } = useSelector((state) => state);
   return (
     <>
-      {/* it is filter section*/}
       <div
         className="row mt-3 mx-3 
           
@@ -22,7 +20,7 @@ export default function Search(props) {
               <button
                 className="btn w-100 btn-sm row text-white text-left"
                 onClick={() => {
-                  obj.dispatcher({ type: "filtertoggle" });
+                  dispatcher({ type: "filtertoggle" });
                 }}
               >
                 <div className="float-left ml-3">Filter </div>
@@ -32,10 +30,10 @@ export default function Search(props) {
 
             <div
               className={`row filterlist ${
-                obj.state.filtertoggle ? "d-none" : ""
+                filtertoggle ? "d-none" : ""
               } h-25 mx-auto`}
             >
-              {obj.state.filter.map((val, ind) => {
+              {filter.map((val, ind) => {
                 const booleanCheck = props.arr.includes(val.id);
 
                 return (
@@ -71,36 +69,6 @@ export default function Search(props) {
           <div></div>
         )}
       </div>
-      <div className="searchtank my-4 ">
-        {!props.obj.length ? (
-          <div className="norecordfound h2">No Record Found</div>
-        ) : (
-          <>
-            {props.obj.map((val, ind) => {
-              return (
-                <div key={ind}>
-                  {/*The Multi Search Content All types of Data*/}
-                  {val.media_type === "person" ? (
-                    <div></div>
-                  ) : (
-                    <Card
-                      media_type={
-                        props.media_type ? props.media_type : val.media_type
-                      }
-                      val={val}
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </>
-        )}
-      </div>
-      <Paginations
-        page={props.page}
-        totalpage={props.totalpage}
-        pagination={props.pagination}
-      />
     </>
   );
 }

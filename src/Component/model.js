@@ -7,30 +7,31 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import { Modal } from "@mui/material";
 import Fade from "@mui/material/Fade";
-import { useContext } from "react";
-import { Global } from "../ContexReducer/contex";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Model() {
-  const obj = useContext(Global);
+  const dispatcher = useDispatch();
+  const { dataState } = useSelector((state) => state);
+
   const [openclose, setOpenclose] = useState(false);
   const [video, setVideo] = useState("mnd7sFt5c3A");
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    if (obj.state.modal.value) {
+    if (dataState.value) {
       setTimeout(() => {
         setOpenclose(true);
       }, 100);
     } else {
       setOpenclose(false);
     }
-  }, [obj.state.modal.value]);
+  }, [dataState.value]);
 
   const style = {
     backgroundImage: `linear-gradient(to top,black,transparent),  url(${
-      obj.state.modal.details.poster_path
-        ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${obj.state.modal.details.poster_path}`
+      dataState.details.poster_path
+        ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${dataState.details.poster_path}`
         : ``
     })`,
     backgroundSize: "cover",
@@ -40,20 +41,20 @@ export default function Model() {
   useEffect(() => {
     const getcast = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/${obj.state.modal.media_type}/${obj.state.modal.id}/credits?api_key="ENTER_API_KEY"&language=en-US`
+        `https://api.themoviedb.org/3/${dataState.media_type}/${dataState.id}/credits?api_key=fc5651851be8402e7bff14388c1e39ca&language=en-US`
       );
 
       setCast(data.cast);
     };
 
     const getvideo = async () => {
-      if (obj.state.modal.media_type == "tv") {
+      if (dataState.media_type == "tv") {
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/tv/${obj.state.modal.id}/season/${
-            obj.state.modal.details.number_of_seasons
-              ? obj.state.modal.details.number_of_seasons
+          `https://api.themoviedb.org/3/tv/${dataState.id}/season/${
+            dataState.details.number_of_seasons
+              ? dataState.details.number_of_seasons
               : 1
-          }/videos?api_key="ENTER_API_KEY"&language=en-US`
+          }/videos?api_key=fc5651851be8402e7bff14388c1e39ca&language=en-US`
         );
 
         if (data.results.length) {
@@ -63,7 +64,7 @@ export default function Model() {
         }
       } else {
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/${obj.state.modal.id}/videos?api_key="ENTER_API_KEY"&language=en-US`
+          `https://api.themoviedb.org/3/movie/${dataState.id}/videos?api_key=fc5651851be8402e7bff14388c1e39ca&language=en-US`
         );
 
         if (data.results.length) {
@@ -76,7 +77,7 @@ export default function Model() {
 
     getvideo();
     getcast();
-  }, [obj.state.modal.id, obj.state.modal.details]);
+  }, [dataState.id, dataState.details]);
 
   return (
     <div>
@@ -85,7 +86,7 @@ export default function Model() {
         aria-describedby="transition-modal-description"
         open={openclose}
         onClose={() => {
-          obj.dispatcher({ type: "modal" });
+          dispatcher({ type: "modal" });
         }}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -102,24 +103,14 @@ export default function Model() {
                     <div className="position-relative ">
                       <img
                         src={
-                          obj.state.modal.details.poster_path
-                            ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${obj.state.modal.details.poster_path}`
+                          dataState.details.poster_path
+                            ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${dataState.details.poster_path}`
                             : " "
                         }
                         alt="not found"
                         className="modelimg  "
                       />
-                      <a
-                        target="_blank"
-                        href={` https://www.google.com/search?q=${
-                          obj.state.modal.details.title
-                            ? obj.state.modal.details.title
-                            : obj.state.modal.details.name
-                        }&tbm=isch`}
-                        className="photo "
-                      >
-                        <i className="fa fa-photo text-white "></i>
-                      </a>
+
                       <div className="row  justify-content-center  my-2">
                         {video ? (
                           <a
@@ -142,66 +133,38 @@ export default function Model() {
                 <div className="modelcontent text-center  mx-auto  ">
                   <div className="modeltitlecontent">
                     <div className="font-weight-bold">
-                      {obj.state.modal.details.title
-                        ? obj.state.modal.details.title
-                        : obj.state.modal.details.name}
+                      {dataState.details.title
+                        ? dataState.details.title
+                        : dataState.details.name}
 
                       {` (${
-                        obj.state.modal.media_type == "movie"
-                          ? "Movie"
-                          : "Web Series"
+                        dataState.media_type == "movie" ? "Movie" : "Web Series"
                       })`}
-
-                      <a
-                        target="_blank"
-                        href={`https://en.wikipedia.org/wiki/${
-                          obj.state.modal.details.title
-                            ? obj.state.modal.details.title
-                            : obj.state.modal.details.name
-                        }`}
-                      >
-                        <i className="fa fa-wikipedia-w mx-2"></i>
-                      </a>
-                      <a
-                        target="_blank"
-                        href={` https://www.google.com/search?q=${
-                          obj.state.modal.details.title
-                            ? obj.state.modal.details.title
-                            : obj.state.modal.details.name
-                        }`}
-                      >
-                        <i className="fa fa-google mx-2"></i>
-                      </a>
                     </div>
-                    <div>{obj.state.modal.date}</div>
+                    <div>{dataState.date}</div>
                     <div>
-                      {obj.state.modal.details.genres
-                        ? obj.state.modal.details.genres.map((val, ind) => {
+                      {dataState.details.genres
+                        ? dataState.details.genres.map((val, ind) => {
                             return <span key={ind}>{val.name}, </span>;
                           })
                         : ""}
                     </div>
                     <div>
-                      {!(obj.state.modal.details.vote_average == 0) ? (
+                      {!(dataState.details.vote_average == 0) ? (
                         <div>
                           <i className="fa fa-star mr-1 text-warning"></i>
-                          {obj.state.modal.details.vote_average} / 10
+                          {dataState.details.vote_average} / 10
                         </div>
                       ) : (
                         <div></div>
                       )}
                     </div>
-                    <div>
-                      <button className="btn btn-primary btn-primary btn-sm mt-2">
-                        Download
-                      </button>
-                    </div>
                   </div>
 
                   <div className="rounded border border-dark modaloverview mt-3 p-1">
                     <small>
-                      {obj.state.modal.details.overview
-                        ? obj.state.modal.details.overview
+                      {dataState.details.overview
+                        ? dataState.details.overview
                         : "No Record"}
                     </small>
                   </div>
@@ -240,27 +203,16 @@ export default function Model() {
                                       ? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${val.profile_path}`
                                       : ``
                                   }`}
-                                  alt="no image found"
+                                  alt="image not found"
                                 />
 
                                 <div className="modalcastcontent mx-3  text-center">
                                   <small>
-                                    <span>
-                                      <strong className="p-1 row justify-content-around">
-                                        {val.name}
-                                        <a
-                                          target="_blank"
-                                          href={`https://en.wikipedia.org/wiki/${val.name.replace(
-                                            " ",
-                                            "_"
-                                          )}`}
-                                        >
-                                          {" "}
-                                          <i className="fa fa-wikipedia-w "></i>
-                                        </a>
-                                      </strong>
-                                    </span>
-                                    <div className="my-2 ">{` (${val.character})`}</div>
+                                    <div className="my-2 ">{` (${
+                                      val.character
+                                        ? val.character
+                                        : "not found"
+                                    })`}</div>
                                   </small>
                                 </div>
                               </SwiperSlide>
@@ -278,7 +230,7 @@ export default function Model() {
                   <i
                     className="fa fa-close text-white"
                     onClick={() => {
-                      obj.dispatcher({ type: "modal" });
+                      dispatcher({ type: "modal" });
                     }}
                   ></i>
                 </div>

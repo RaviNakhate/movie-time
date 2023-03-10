@@ -25,8 +25,13 @@
   .carddiv {
     width: 11rem;
   }
+  .font {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
   .titlehead {
-    font-size: 1.5rem;
+    font-size: 0.8rem;
   }
   .searchcard {
     width: 7rem;

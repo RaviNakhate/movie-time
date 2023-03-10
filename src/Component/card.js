@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useContext } from "react";
-import { Global } from "../ContexReducer/contex";
 import Noimg from "./assets/noimg.jpg";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Card(props) {
-  const obj = useContext(Global);
+  const dispatcher = useDispatch();
   const [date, setDate] = useState("");
   const [details, setDetails] = useState([]);
 
@@ -13,9 +12,7 @@ export default function Card(props) {
   useEffect(() => {
     const getdetails = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/${
-          props.media_type == "tv" ? "tv" : "movie"
-        }/${props.val.id}?api_key="ENTER_API_KEY"&language=en-US`
+        `https://api.themoviedb.org/3/${props.media_type}/${props.val.id}?api_key=fc5651851be8402e7bff14388c1e39ca&language=en-US`
       );
 
       if (props.media_type == "tv") {
@@ -69,7 +66,7 @@ export default function Card(props) {
         <div className="card bg-transparent">
           <img
             onClick={() => {
-              obj.dispatcher({
+              dispatcher({
                 type: "modal",
                 payload: {
                   id: props.val.id,
@@ -91,9 +88,9 @@ export default function Card(props) {
             className="card-top-img cardimg mx-auto mt-2"
           />
           <div className="card-body">
-            <div className="card-title text-center fontsize">
+            <div className="card-title text-center font">
               {props.val.title ? props.val.title : props.val.name}
-              <div>
+              <div className="font">
                 <small> {date}</small>
               </div>
             </div>
@@ -101,9 +98,9 @@ export default function Card(props) {
             <div className="card-content text-center">
               <div>
                 {!(props.val.vote_average == 0) ? (
-                  <div>
-                    <i className="fa fa-star mr-1 text-warning"></i>
-                    {props.val.vote_average} / 10
+                  <div className="font">
+                    <i className="fa fa-star mr-1 text-warning font"></i>
+                    {props.val.vote_average.toFixed(1)} / 10
                   </div>
                 ) : (
                   <div></div>

@@ -1,3 +1,15 @@
+.mode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85vw;
+  height: 80vh;
+  overflow-y: scroll;
+  border: 0.5px solid white;
+  color: white;
+}
+
 .close {
   position: fixed;
   z-index: inherit;
@@ -26,7 +38,7 @@
 }
 
 .modelcontent {
-  width: 58%;
+  min-width: 50%;
 }
 .modaloverview {
   height: 25vh;
@@ -34,7 +46,8 @@
 }
 
 .avatar {
-  width: 70%;
+  width: 100px;
+  min-height: 150px;
   border-radius: 20px;
 }
 
@@ -54,24 +67,12 @@
   }
 }
 
-.mode {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 70vh;
-  overflow-y: scroll;
-  border: 0.5px solid white;
-  color: white;
-}
-
 /* scrollbar */
 .modaloverview::-webkit-scrollbar {
   width: 0px;
 }
 .mode::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
   height: 10px;
 }
 .mode::-webkit-scrollbar-thumb {

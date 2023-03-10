@@ -12,14 +12,13 @@ export default function Paginations(props) {
                 ? props.totalpage - (props.totalpage - 500)
                 : props.totalpage
             }
-            size="small"
             hideNextButton={true}
             hidePrevButton={true}
             shape="rounded"
             color="success"
             page={props.page}
             onChange={(e) => {
-              props.pagination(e);
+              props.changePage(parseInt(e.target.textContent));
             }}
           />
         </div>

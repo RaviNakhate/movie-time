@@ -12,7 +12,7 @@ export default function Banner() {
   useEffect(() => {
     const bannerfun = async () => {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/all/week?api_key="ENTER_API_KEY"`
+        `https://api.themoviedb.org/3/trending/all/week?api_key=fc5651851be8402e7bff14388c1e39ca`
       );
       setBanner(data.results);
     };
@@ -20,7 +20,7 @@ export default function Banner() {
   }, []);
 
   return (
-    <div className="banner  mt-2  text-white">
+    <div className="banner mt-5 text-white">
       <Swiper
         slidesPerView={1}
         modules={[Autoplay]}
