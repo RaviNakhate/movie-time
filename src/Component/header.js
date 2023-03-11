@@ -10,6 +10,7 @@ const Header = () => {
   const {
     searchState: { search },
   } = useSelector((state) => state);
+  console.log(window.location.pathname);
 
   const menus = (id) => {
     return (
@@ -46,7 +47,7 @@ const Header = () => {
           <div className="header-container-child-2">
             {menus(1)}
 
-            {window.location.pathname === "/" ? (
+            {window.location.pathname === "/movietime/" ? (
               ""
             ) : (
               <div className="search-div">
