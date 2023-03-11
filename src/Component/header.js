@@ -10,7 +10,6 @@ const Header = () => {
   const {
     searchState: { search },
   } = useSelector((state) => state);
-  console.log(window.location.pathname);
 
   const menus = (id) => {
     return (
